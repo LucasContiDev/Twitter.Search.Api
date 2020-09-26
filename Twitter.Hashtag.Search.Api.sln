@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Hashtag.Search.Api", "Twitter.Hashtag.Search.Api\Twitter.Hashtag.Search.Api.csproj", "{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Hashtag.Search.Services", "Twitter.Hashtag.Search.Services\Twitter.Hashtag.Search.Services.csproj", "{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Hashtag.Search.Services.Abstraction", "Twitter.Hashtag.Search.Services.Abstraction\Twitter.Hashtag.Search.Services.Abstraction.csproj", "{A62D5A27-1D95-44B7-8C63-B50F94417C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Hashtag.Search.Entities", "Twitter.Hashtag.Search.Entities\Twitter.Hashtag.Search.Entities.csproj", "{F3A6702A-4B45-4324-AE66-B233AAF9967D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A62D5A27-1D95-44B7-8C63-B50F94417C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A62D5A27-1D95-44B7-8C63-B50F94417C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A62D5A27-1D95-44B7-8C63-B50F94417C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A62D5A27-1D95-44B7-8C63-B50F94417C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>Twitter.Hashtag.Search.Api</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Twitter.Hashtag.Search.Entities\Twitter.Hashtag.Search.Entities.csproj" />
+      <ProjectReference Include="..\Twitter.Hashtag.Search.Services.Abstraction\Twitter.Hashtag.Search.Services.Abstraction.csproj" />
+      <ProjectReference Include="..\Twitter.Hashtag.Search.Services\Twitter.Hashtag.Search.Services.csproj" />
+    </ItemGroup>
+
+
+</Project>
