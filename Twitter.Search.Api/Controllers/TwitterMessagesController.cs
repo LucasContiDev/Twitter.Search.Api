@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Twitter.Hashtag.Search.Entities;
 using Twitter.Hashtag.Search.Services.Abstraction;
+using Twitter.Search.Services.Abstraction;
 
 namespace Twitter.Hashtag.Search.Api.Controllers
 {

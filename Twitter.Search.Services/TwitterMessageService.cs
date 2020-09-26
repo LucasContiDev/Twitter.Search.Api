@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using Refit;
 using Twitter.Hashtag.Search.Entities;
-using Twitter.Hashtag.Search.Services.Abstraction;
+using Twitter.Search.Services.Abstraction;
 
-namespace Twitter.Hashtag.Search.Services
+namespace Twitter.Search.Services
 {
     public class TwitterMessageService : ITwitterMessageService
     {

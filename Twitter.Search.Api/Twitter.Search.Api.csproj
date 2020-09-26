@@ -12,8 +12,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Twitter.Hashtag.Search.Entities\Twitter.Hashtag.Search.Entities.csproj" />
-      <ProjectReference Include="..\Twitter.Hashtag.Search.Services.Abstraction\Twitter.Hashtag.Search.Services.Abstraction.csproj" />
       <ProjectReference Include="..\Twitter.Hashtag.Search.Services\Twitter.Hashtag.Search.Services.csproj" />
+      <ProjectReference Include="..\Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj" />
+      <ProjectReference Include="..\Twitter.Search.Services\Twitter.Search.Services.csproj" />
     </ItemGroup>
 
 

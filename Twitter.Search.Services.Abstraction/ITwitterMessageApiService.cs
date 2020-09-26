@@ -2,7 +2,7 @@
 using Refit;
 using Twitter.Hashtag.Search.Entities;
 
-namespace Twitter.Hashtag.Search.Services.Abstraction
+namespace Twitter.Search.Services.Abstraction
 {
     public interface ITwitterMessageApiService
     {

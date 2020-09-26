@@ -6,8 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Refit;
-using Twitter.Hashtag.Search.Services;
 using Twitter.Hashtag.Search.Services.Abstraction;
+using Twitter.Search.Services;
+using Twitter.Search.Services.Abstraction;
 
 namespace Twitter.Hashtag.Search.Api
 {
