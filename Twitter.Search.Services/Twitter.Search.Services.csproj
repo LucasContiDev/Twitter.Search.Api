@@ -5,8 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Twitter.Hashtag.Search.Services.Abstraction\Twitter.Hashtag.Search.Services.Abstraction.csproj" />
       <ProjectReference Include="..\Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj" />
+      <ProjectReference Include="..\Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.1.2\ref\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

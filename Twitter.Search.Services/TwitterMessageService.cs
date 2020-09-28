@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Refit;
 using Twitter.Hashtag.Search.Entities;
@@ -8,6 +9,7 @@ namespace Twitter.Search.Services
 {
     public class TwitterMessageService : ITwitterMessageService
     {
+        private readonly ILogger<TwitterMessageService> _logger;
         private readonly ITwitterMessageApiService _twitterMessageApiService;
 
         private const string HostUrl = "https://api.twitter.com";
@@ -15,8 +17,9 @@ namespace Twitter.Search.Services
         private const string TwitterToken =
             "AAAAAAAAAAAAAAAAAAAAAH4uIAEAAAAA8Z3pHkd9lId2kK%2FRW4af%2Fe5J%2FM4%3D5lEr4loM0LjpDwSwgAAteIjxa8tO39lkULVWazFMWAdoK6vh1Y";
 
-        public TwitterMessageService()
+        public TwitterMessageService(ILogger<TwitterMessageService> logger)
         {
+            _logger = logger;
             _twitterMessageApiService = RestService.For<ITwitterMessageApiService>(HostUrl,
                 new RefitSettings()
                 {
@@ -28,6 +31,7 @@ namespace Twitter.Search.Services
         public async Task<TwitterMessage> GetMessagesByHashtag(string hashtag)
         {
             var twitterApiResponse = await _twitterMessageApiService.GetRecentTweetsByHashtag(hashtag);
+            _logger.LogInformation(JsonConvert.SerializeObject(twitterApiResponse));
             var twitterMessage = ConvertToSimpleTwitterMessage(twitterApiResponse);
             return twitterMessage;
         }

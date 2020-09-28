@@ -16,6 +16,7 @@ namespace Twitter.Hashtag.Search.Entities
         public List<object> hashtags { get; set; } 
         public List<object> symbols { get; set; } 
         public List<object> user_mentions { get; set; } 
+        public List<object> media { get; set; }
         public List<Url> urls { get; set; } 
     }
 

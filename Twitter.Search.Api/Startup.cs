@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Refit;
-using Twitter.Hashtag.Search.Services.Abstraction;
 using Twitter.Search.Services;
 using Twitter.Search.Services.Abstraction;
 
@@ -40,7 +39,7 @@ namespace Twitter.Hashtag.Search.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -51,6 +50,13 @@ namespace Twitter.Hashtag.Search.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyOrigin();
+                opt.AllowAnyMethod();
+                opt.AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 
