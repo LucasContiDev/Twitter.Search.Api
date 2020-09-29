@@ -1,10 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.OpenApi.Models;
 using Refit;
 using Twitter.Search.Services;
 using Twitter.Search.Services.Abstraction;
@@ -13,22 +20,90 @@ namespace Twitter.Hashtag.Search.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
+            this.environment  = environment;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration configuration { get; }
+        private IWebHostEnvironment environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.AddControllers();
             services.TryAddScoped<ITwitterMessageService, TwitterMessageService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Twitter Search Api", Version = "v1" });
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Name = "oauth2",
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        Implicit = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri(configuration["Jwt:Authority"]+"/protocol/openid-connect/auth"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "web-origins", "OpenID Connect scope for add allowed web origins to the access token" }
+                            }
+                        },
+                        ClientCredentials = new OpenApiOAuthFlow
+                        {
+                            TokenUrl = new Uri(configuration["Jwt:Authority"]+"/protocol/openid-connect/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "web-origins", "OpenID Connect scope for add allowed web origins to the access token" }
+                            }
+                        }
+                    },
+                });
+ 
+                    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
+                            },
+                            new[] {"web-origins"}
+                        }
+                    });
+                });
+                
             services.AddControllersWithViews().AddNewtonsoftJson();
+            
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.Authority = configuration["Jwt:Authority"];
+                o.Audience = configuration["Jwt:Audience"];
+                o.Events = new JwtBearerEvents()
+                {
+                    OnAuthenticationFailed = c =>
+                    {
+                        c.NoResult();
+            
+                        c.Response.StatusCode = 500;
+                        c.Response.ContentType = "text/plain";
+                        return Task.CompletedTask;
+                    }
+                };
+                o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidAudiences = new string[] { "master-realm", "account", configuration["Jwt:Audience"] }
+                };
+                o.RequireHttpsMetadata = false;
+            });
+            
             AddRestServices(services);
         }
 
@@ -45,11 +120,19 @@ namespace Twitter.Hashtag.Search.Api
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "TwitterMessageSearch"); });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TwitterMessageSearch");
+                c.OAuthClientId(configuration["Jwt:Audience"]);
+                c.OAuthAppName("Twitter Search Api");
+            });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
             
             app.UseCors(opt =>
             {
@@ -57,8 +140,6 @@ namespace Twitter.Hashtag.Search.Api
                 opt.AllowAnyMethod();
                 opt.AllowAnyHeader();
             });
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
