@@ -15,7 +15,12 @@
       <ProjectReference Include="..\Twitter.Search.Entities\Twitter.Search.Entities.csproj" />
       <ProjectReference Include="..\Twitter.Search.Services\Twitter.Search.Services.csproj" />
       <ProjectReference Include="..\Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj" />
-      <ProjectReference Include="..\Twitter.Search.Services\Twitter.Search.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="certificado-desenv\certificate.pfx">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 

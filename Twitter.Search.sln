@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Api", "Twitter.Search.Api\Twitter.Search.Api.csproj", "{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Api", "src\Twitter.Search.Api\Twitter.Search.Api.csproj", "{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Services", "Twitter.Search.Services\Twitter.Search.Services.csproj", "{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Services", "src\Twitter.Search.Services\Twitter.Search.Services.csproj", "{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Services.Abstraction", "Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj", "{A62D5A27-1D95-44B7-8C63-B50F94417C0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Services.Abstraction", "src\Twitter.Search.Services.Abstraction\Twitter.Search.Services.Abstraction.csproj", "{A62D5A27-1D95-44B7-8C63-B50F94417C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Entities", "Twitter.Search.Entities\Twitter.Search.Entities.csproj", "{F3A6702A-4B45-4324-AE66-B233AAF9967D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitter.Search.Entities", "src\Twitter.Search.Entities\Twitter.Search.Entities.csproj", "{F3A6702A-4B45-4324-AE66-B233AAF9967D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B7DEEB37-E51D-471B-A19E-D0602989A7B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,11 @@ Global
 		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3A6702A-4B45-4324-AE66-B233AAF9967D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B38D064-A8F1-46B6-B1B8-3EAC56AF390A} = {B7DEEB37-E51D-471B-A19E-D0602989A7B5}
+		{F3A6702A-4B45-4324-AE66-B233AAF9967D} = {B7DEEB37-E51D-471B-A19E-D0602989A7B5}
+		{96AF65CA-9B5C-4C79-BC41-39FC2F6D067C} = {B7DEEB37-E51D-471B-A19E-D0602989A7B5}
+		{A62D5A27-1D95-44B7-8C63-B50F94417C0C} = {B7DEEB37-E51D-471B-A19E-D0602989A7B5}
 	EndGlobalSection
 EndGlobal
