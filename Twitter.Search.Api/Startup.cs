@@ -2,17 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Refit;
+using Twitter.Hashtag.Search.Entities;
 using Twitter.Search.Services;
 using Twitter.Search.Services.Abstraction;
 
@@ -32,8 +31,13 @@ namespace Twitter.Hashtag.Search.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IdentityModelEventSource.ShowPII = true;
+            services.Configure<TwitterSearchDatabaseSettings>(
+                configuration.GetSection(nameof(TwitterSearchDatabaseSettings)));
+            var x = services.AddSingleton<ITwitterSearchDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<TwitterSearchDatabaseSettings>>().Value);
+            
             services.AddControllers();
+            services.TryAddSingleton<ITwitterSearchDatabaseSettings, TwitterSearchDatabaseSettings>();
             services.TryAddScoped<ITwitterMessageService, TwitterMessageService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

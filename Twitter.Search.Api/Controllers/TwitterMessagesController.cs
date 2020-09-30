@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -39,9 +38,8 @@ namespace Twitter.Hashtag.Search.Api.Controllers
         [HttpGet]
         public ActionResult GetTwitterMessagesByHashtag()
         {
-            // requisitar o serviço de busca (diretamente ao banco de dados) para retornar o resultado com os dados informados na requisição
-            var rng = new Random();
-            return Ok(rng);
+            var messages = _twitterMessageService.RetrieveMessagesFromDatabase();
+            return Ok(messages);
         }
     }
 }
